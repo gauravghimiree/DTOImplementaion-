@@ -1,5 +1,6 @@
 package com.example.demo.Service;
 
+import com.example.demo.DTO.ProductDTO;
 import com.example.demo.Model.Product;
 import com.example.demo.Repo.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,21 +14,18 @@ public class ProductService  {
 
       @Autowired
     ProductRepo repo;
-      @Autowired
-      Product products;
-    public List<Product> listAll() {
+
+    public List<Product> getAllProducts() {
         return repo.findAll();
     }
 
     public void save(Product product) {
 
-        products.setName(product.getName());
-       products.setPrice(product.getPrice());
-        repo.save(products);
+        repo.save(product);
 
     }
 
-    public Product get(Integer id) {
+    public Product getById(Integer id) {
         return repo.findById(id).get();
     }
 
