@@ -43,10 +43,11 @@ public class ProductController {
         Product product= productService.getById(id);
         return modelMapper.map(product,ProductDTO.class);
     }
-  @PutMapping("/update")
-    public void updateProduct(@RequestBody ProductDTO product) {
+  @PutMapping("/update/{id}")
+    public String updateProduct(@RequestBody ProductDTO product , @PathVariable int id) throws Exception {
         Product p= modelMapper.map(product, Product.class);
-        productService.updateProduct(p);
+        productService.updateProduct(p,id);
+        return "success";
 
   }
 

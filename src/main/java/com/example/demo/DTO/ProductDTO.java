@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ProductDTO {
+
     private String name;
     private float price;
 
@@ -23,4 +24,6 @@ public class ProductDTO {
     public void setPrice(float price) {
         this.price = price;
     }
+
+
 }
