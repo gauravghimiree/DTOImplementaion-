@@ -12,6 +12,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.util.Arrays.stream;
+
 @RestController
 public class ProductController {
 
@@ -35,8 +37,19 @@ public class ProductController {
               .map(p->modelMapper.map(p,ProductDTO.class))
               .collect(Collectors.toList());
 
-        // some changes has been done here
     }
+    @GetMapping("list/{id}")
+    public ProductDTO getProduct(@PathVariable int id) {
+        Product product= productService.getById(id);
+        return modelMapper.map(product,ProductDTO.class);
+    }
+  @PutMapping("/update/{id}")
+    public String updateProduct(@RequestBody ProductDTO product , @PathVariable int id) throws Exception {
+        Product p= modelMapper.map(product, Product.class);
+        productService.updateProduct(p,id);
+        return "success";
+
+  }
 
     }
 
