@@ -1,6 +1,5 @@
 package com.example.demo.Service;
 
-import com.example.demo.DTO.ProductDTO;
 import com.example.demo.Model.Product;
 import com.example.demo.Repo.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +30,15 @@ public class ProductService  {
 
     public void delete(Integer id) {
         repo.deleteById(id);
+    }
+
+    public void updateProduct(Product product) {
+        if(repo.findById(product.getId()).isPresent()) {
+            product.setId(product.getId());
+            repo.save(product);
+
+        }
+
     }
 
 }
